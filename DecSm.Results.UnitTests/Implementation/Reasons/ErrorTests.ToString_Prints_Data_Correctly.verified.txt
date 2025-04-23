@@ -1,0 +1,9 @@
+﻿{
+  Input: {
+    Message: ,
+    Data: {
+      Key: Value
+    }
+  },
+  Result: Error: Data=[Key=Value]
+}

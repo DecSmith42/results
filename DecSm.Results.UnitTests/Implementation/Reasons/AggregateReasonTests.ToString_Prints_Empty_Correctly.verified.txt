@@ -1,0 +1,8 @@
+﻿{
+  Input: {
+    Reasons: null,
+    Message: 0 reasons,
+    IsError: false
+  },
+  Result: AggregateReason: '0 reasons'
+}

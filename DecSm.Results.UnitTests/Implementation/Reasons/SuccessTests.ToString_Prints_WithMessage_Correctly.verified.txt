@@ -1,0 +1,6 @@
+﻿{
+  Input: {
+    Message: Test
+  },
+  Result: Success: 'Test'
+}

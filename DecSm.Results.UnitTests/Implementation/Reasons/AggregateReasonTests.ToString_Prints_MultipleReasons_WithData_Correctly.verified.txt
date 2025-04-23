@@ -1,0 +1,18 @@
+﻿{
+  Input: {
+    Reasons: [
+      {
+        Message: Reason1
+      },
+      {
+        Message: Reason2
+      }
+    ],
+    Message: 2 reasons,
+    IsError: true,
+    Data: {
+      Key: Value
+    }
+  },
+  Result: AggregateReason: '2 reasons', Data=[Key=Value], Reasons=[Error: 'Reason1', Error: 'Reason2']
+}

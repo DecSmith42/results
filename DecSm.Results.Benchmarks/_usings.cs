@@ -1,0 +1,10 @@
+﻿global using System.Diagnostics.CodeAnalysis;
+global using BenchmarkDotNet.Attributes;
+global using BenchmarkDotNet.Configs;
+global using BenchmarkDotNet.Exporters;
+global using BenchmarkDotNet.Jobs;
+global using BenchmarkDotNet.Running;
+global using DecSm.Results.Implementation.Reasons;
+global using DecSm.Results.Implementation.Results;
+global using DecSm.Results.Benchmarks;
+global using DecSm.Results.Extensions;

@@ -1,0 +1,12 @@
+﻿{
+  Input: {
+    Reasons: [
+      {
+        Message: Reason1
+      }
+    ],
+    Message: Reason1,
+    IsError: true
+  },
+  Result: AggregateReason: 'Reason1', Reasons=[Error: 'Reason1']
+}

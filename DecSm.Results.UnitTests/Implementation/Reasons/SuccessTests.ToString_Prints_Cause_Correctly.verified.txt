@@ -1,0 +1,9 @@
+﻿{
+  Input: {
+    Cause: {
+      Message: Reason1
+    },
+    Message: 
+  },
+  Result: Success: Cause=[Success: 'Reason1']
+}

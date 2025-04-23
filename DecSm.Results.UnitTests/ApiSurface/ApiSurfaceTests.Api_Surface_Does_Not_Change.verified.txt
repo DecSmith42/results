@@ -1,0 +1,640 @@
+﻿[
+  {
+    Name: JsonSerializerOptionsExtensions,
+    Methods: [
+      JsonSerializerOptionsExtensions.ConfigureForResults(JsonSerializerOptions options)
+    ]
+  },
+  {
+    Name: ResultConverter,
+    Constructors: [
+      ResultConverter.ctor()
+    ],
+    Methods: [
+      ResultConverter.Read(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options),
+      ResultConverter.Write(Utf8JsonWriter writer, Result value, JsonSerializerOptions options),
+      JsonConverter<Result>.CanConvert(Type typeToConvert),
+      JsonConverter<Result>.get_HandleNull(),
+      JsonConverter<Result>.get_Type(),
+      JsonConverter<Result>.ReadAsPropertyName(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options),
+      JsonConverter<Result>.WriteAsPropertyName(Utf8JsonWriter writer, Result value, JsonSerializerOptions options)
+    ]
+  },
+  {
+    Name: ResultOfConverter<T>,
+    Constructors: [
+      ResultOfConverter<T>.ctor()
+    ],
+    Methods: [
+      ResultOfConverter<T>.Read(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options),
+      ResultOfConverter<T>.Write(Utf8JsonWriter writer, Result<T> value, JsonSerializerOptions options),
+      JsonConverter<Result<T>>.CanConvert(Type typeToConvert),
+      JsonConverter<Result<T>>.get_HandleNull(),
+      JsonConverter<Result<T>>.get_Type(),
+      JsonConverter<Result<T>>.ReadAsPropertyName(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options),
+      JsonConverter<Result<T>>.WriteAsPropertyName(Utf8JsonWriter writer, Result<T> value, JsonSerializerOptions options)
+    ]
+  },
+  {
+    Name: ResultOfConverterFactory,
+    Constructors: [
+      ResultOfConverterFactory.ctor()
+    ],
+    Methods: [
+      ResultOfConverterFactory.CanConvert(Type typeToConvert),
+      ResultOfConverterFactory.CreateConverter(Type typeToConvert, JsonSerializerOptions options),
+      JsonConverterFactory.get_Type()
+    ]
+  },
+  {
+    Name: SerializableException,
+    Constructors: [
+      SerializableException.ctor()
+    ],
+    Methods: [
+      SerializableException.get_ExceptionType(),
+      SerializableException.set_ExceptionType(string value),
+      SerializableException.get_Message(),
+      SerializableException.set_Message(string value),
+      SerializableException.get_StackTrace(),
+      SerializableException.set_StackTrace(string value),
+      SerializableException.get_InnerException(),
+      SerializableException.set_InnerException(SerializableException value),
+      SerializableException.FromException(Exception exception),
+      SerializableException.ToException(SerializableException exception)
+    ]
+  },
+  {
+    Name: Result,
+    Constructors: [
+      Result.ctor()
+    ],
+    Methods: [
+      Result.Ok(),
+      Result.Create(IReason reason),
+      Result.Create(IEnumerable<IReason> reasons),
+      Result.Create(ImmutableArray<IReason> reasons),
+      Result.Success(ISuccess success),
+      Result.Failure(IError error),
+      Result.Ok(TValue value),
+      Result.Create(TValue value, IReason reason),
+      Result.Success(TValue value, ISuccess success),
+      Result.Failure(IError error),
+      Result.From(Action from, Func<Exception, IError> exceptionHandler),
+      Result.FromResult(Func<Result> from, Func<Exception, IError> exceptionHandler),
+      Result.From(Func<TValue> func, Func<Exception, IError> exceptionHandler),
+      Result.FromResult(Func<Result<TValue>> func, Func<Exception, IError> exceptionHandler),
+      Result.From(Task from, Func<Exception, IError> exceptionHandler),
+      Result.FromResult(Task<Result> from, Func<Exception, IError> exceptionHandler),
+      Result.From(Func<Task> from, Func<Exception, IError> exceptionHandler),
+      Result.FromResult(Func<Task<Result>> from, Func<Exception, IError> exceptionHandler),
+      Result.From(Task<T> from, Func<Exception, IError> exceptionHandler),
+      Result.FromResult(Task<Result<T>> from, Func<Exception, IError> exceptionHandler),
+      Result.From(Func<Task<T>> from, Func<Exception, IError> exceptionHandler),
+      Result.FromResult(Func<Task<Result<T>>> from, Func<Exception, IError> exceptionHandler),
+      ResultBase.get_IsFailed(),
+      ResultBase.get_Reason(),
+      ResultBase.set_Reason(IReason value)
+    ]
+  },
+  {
+    Name: ResultBase,
+    Methods: [
+      ResultBase.get_IsFailed(),
+      ResultBase.get_Reason(),
+      ResultBase.set_Reason(IReason value)
+    ]
+  },
+  {
+    Name: Result<T>,
+    Constructors: [
+      Result<T>.ctor()
+    ],
+    Methods: [
+      Result<T>.get_Value(),
+      Result<T>.get_ValueOrDefault(),
+      Result<T>.WithValue(T value),
+      Result<T>.WithoutValue(),
+      Result<T>.TransformValue(Func<T, TNewValue> valueTransform),
+      ResultBase.get_IsFailed(),
+      ResultBase.get_Reason(),
+      ResultBase.set_Reason(IReason value)
+    ]
+  },
+  {
+    Name: AggregateReason,
+    Constructors: [
+      AggregateReason.ctor(),
+      AggregateReason.ctor(IEnumerable<IReason> reasons),
+      AggregateReason.ctor(ImmutableArray<IReason> reasons)
+    ],
+    Methods: [
+      AggregateReason.get_Reasons(),
+      AggregateReason.get_Message(),
+      AggregateReason.get_IsError(),
+      ReasonBase.get_Data(),
+      ReasonBase.set_Data(IReadOnlyDictionary<string, object> value)
+    ]
+  },
+  {
+    Name: Error,
+    Constructors: [
+      Error.ctor(),
+      Error.ctor(string message),
+      Error.ctor(IReason cause),
+      Error.ctor(string message, IReason cause)
+    ],
+    Methods: [
+      Error.get_Default(),
+      Reason.get_Cause(),
+      ReasonBase.get_Message(),
+      ReasonBase.get_Data(),
+      ReasonBase.set_Data(IReadOnlyDictionary<string, object> value)
+    ]
+  },
+  {
+    Name: ExceptionError,
+    Constructors: [
+      ExceptionError.ctor(Exception Exception)
+    ],
+    Methods: [
+      ExceptionError.get_Exception(),
+      ExceptionError.get_Message(),
+      ExceptionError.Mask(),
+      ReasonBase.get_Data(),
+      ReasonBase.set_Data(IReadOnlyDictionary<string, object> value)
+    ]
+  },
+  {
+    Name: Reason,
+    Methods: [
+      Reason.get_Cause(),
+      ReasonBase.get_Message(),
+      ReasonBase.get_Data(),
+      ReasonBase.set_Data(IReadOnlyDictionary<string, object> value)
+    ]
+  },
+  {
+    Name: ReasonBase,
+    Methods: [
+      ReasonBase.get_Message(),
+      ReasonBase.get_Data(),
+      ReasonBase.set_Data(IReadOnlyDictionary<string, object> value)
+    ]
+  },
+  {
+    Name: Success,
+    Constructors: [
+      Success.ctor(),
+      Success.ctor(string message),
+      Success.ctor(IReason cause),
+      Success.ctor(string message, IReason cause)
+    ],
+    Methods: [
+      Success.get_Default(),
+      Reason.get_Cause(),
+      ReasonBase.get_Message(),
+      ReasonBase.get_Data(),
+      ReasonBase.set_Data(IReadOnlyDictionary<string, object> value)
+    ]
+  },
+  {
+    Name: AggregateReasonExtensions,
+    Methods: [
+      AggregateReasonExtensions.HasError(AggregateReason instance),
+      AggregateReasonExtensions.GetErrors(AggregateReason instance),
+      AggregateReasonExtensions.HasError(AggregateReason instance, Func<IError, bool> predicate),
+      AggregateReasonExtensions.GetErrors(AggregateReason instance, Func<IError, bool> predicate)
+    ]
+  },
+  {
+    Name: AsyncResultBindNoValueExtensions,
+    Methods: [
+      AsyncResultBindNoValueExtensions.BindToResult(Task<Result> result, Action bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultBindNoValueExtensions.BindToResult(Task<Result> result, Func<Task> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultBindNoValueExtensions.BindResult(Task<Result> result, Func<Result> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultBindNoValueExtensions.BindResult(Task<Result> result, Func<Task<Result>> bind, Func<Exception, IError> exceptionHandler)
+    ]
+  },
+  {
+    Name: AsyncResultBindWithValueExtensions,
+    Methods: [
+      AsyncResultBindWithValueExtensions.BindToResult(Task<Result> result, Func<T> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultBindWithValueExtensions.BindToResult(Task<Result> result, Func<Task<T>> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultBindWithValueExtensions.BindResult(Task<Result> result, Func<Result<T>> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultBindWithValueExtensions.BindResult(Task<Result> result, Func<Task<Result<T>>> bind, Func<Exception, IError> exceptionHandler)
+    ]
+  },
+  {
+    Name: AsyncResultOfBindNoValueExtensions,
+    Methods: [
+      AsyncResultOfBindNoValueExtensions.BindToResult(Task<Result<T>> result, Action bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfBindNoValueExtensions.BindToResult(Task<Result<T>> result, Func<Task> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfBindNoValueExtensions.BindToResult(Task<Result<T>> result, Action<T> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfBindNoValueExtensions.BindToResult(Task<Result<T>> result, Func<T, Task> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfBindNoValueExtensions.BindResult(Task<Result<T>> result, Func<Result> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfBindNoValueExtensions.BindResult(Task<Result<T>> result, Func<Task<Result>> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfBindNoValueExtensions.BindResult(Task<Result<T>> result, Func<T, Result> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfBindNoValueExtensions.BindResult(Task<Result<T>> result, Func<T, Task<Result>> bind, Func<Exception, IError> exceptionHandler)
+    ]
+  },
+  {
+    Name: AsyncResultOfBindWithValueExtensions,
+    Methods: [
+      AsyncResultOfBindWithValueExtensions.BindToResult(Task<Result<T>> result, Func<TNew> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfBindWithValueExtensions.BindToResult(Task<Result<T>> result, Func<Task<TNew>> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfBindWithValueExtensions.BindToResult(Task<Result<T>> result, Func<T, TNew> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfBindWithValueExtensions.BindToResult(Task<Result<T>> result, Func<T, Task<TNew>> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfBindWithValueExtensions.BindResult(Task<Result<T>> result, Func<Result<TNew>> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfBindWithValueExtensions.BindResult(Task<Result<T>> result, Func<Task<Result<TNew>>> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfBindWithValueExtensions.BindResult(Task<Result<T>> result, Func<T, Result<TNew>> bind, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfBindWithValueExtensions.BindResult(Task<Result<T>> result, Func<T, Task<Result<TNew>>> bind, Func<Exception, IError> exceptionHandler)
+    ]
+  },
+  {
+    Name: AsyncResultCheckExtensions,
+    Methods: [
+      AsyncResultCheckExtensions.HasError(Task<ResultBase> result),
+      AsyncResultCheckExtensions.GetErrors(Task<ResultBase> result),
+      AsyncResultCheckExtensions.HasError(Task<ResultBase> result, Func<IError, bool> predicate),
+      AsyncResultCheckExtensions.GetErrors(Task<ResultBase> result, Func<IError, bool> predicate)
+    ]
+  },
+  {
+    Name: AsyncResultExtensions,
+    Methods: [
+      AsyncResultExtensions.WithoutValue(Task<Result<T>> result)
+    ]
+  },
+  {
+    Name: AsyncResultHandleNoValueExtensions,
+    Methods: [
+      AsyncResultHandleNoValueExtensions.HandleToResult(Task<Result> result, Action bindSuccess, Action bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultHandleNoValueExtensions.HandleToResult(Task<Result> result, Func<Task> bindSuccess, Action bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultHandleNoValueExtensions.HandleToResult(Task<Result> result, Action bindSuccess, Func<Task> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultHandleNoValueExtensions.HandleToResult(Task<Result> result, Func<Task> bindSuccess, Func<Task> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultHandleNoValueExtensions.HandleResult(Task<Result> result, Func<Result> bindSuccess, Func<Result> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultHandleNoValueExtensions.HandleResult(Task<Result> result, Func<Task<Result>> bindSuccess, Func<Result> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultHandleNoValueExtensions.HandleResult(Task<Result> result, Func<Result> bindSuccess, Func<Task<Result>> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultHandleNoValueExtensions.HandleResult(Task<Result> result, Func<Task<Result>> bindSuccess, Func<Task<Result>> bindFailure, Func<Exception, IError> exceptionHandler)
+    ]
+  },
+  {
+    Name: AsyncResultHandleWithValueExtensions,
+    Methods: [
+      AsyncResultHandleWithValueExtensions.HandleToResult(Task<Result> result, Func<T> bindSuccess, Func<T> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultHandleWithValueExtensions.HandleToResult(Task<Result> result, Func<Task<T>> bindSuccess, Func<T> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultHandleWithValueExtensions.HandleToResult(Task<Result> result, Func<T> bindSuccess, Func<Task<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultHandleWithValueExtensions.HandleToResult(Task<Result> result, Func<Task<T>> bindSuccess, Func<Task<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultHandleWithValueExtensions.HandleResult(Task<Result> result, Func<Result<T>> bindSuccess, Func<Result<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultHandleWithValueExtensions.HandleResult(Task<Result> result, Func<Task<Result<T>>> bindSuccess, Func<Result<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultHandleWithValueExtensions.HandleResult(Task<Result> result, Func<Result<T>> bindSuccess, Func<Task<Result<T>>> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultHandleWithValueExtensions.HandleResult(Task<Result> result, Func<Task<Result<T>>> bindSuccess, Func<Task<Result<T>>> bindFailure, Func<Exception, IError> exceptionHandler)
+    ]
+  },
+  {
+    Name: AsyncResultOfHandleNoValueExtensions,
+    Methods: [
+      AsyncResultOfHandleNoValueExtensions.HandleToResult(Task<Result<T>> result, Action handleSuccess, Action handleFailure),
+      AsyncResultOfHandleNoValueExtensions.HandleToResult(Task<Result<T>> result, Func<Task> handleSuccess, Action handleFailure),
+      AsyncResultOfHandleNoValueExtensions.HandleToResult(Task<Result<T>> result, Action handleSuccess, Func<Task> handleFailure),
+      AsyncResultOfHandleNoValueExtensions.HandleToResult(Task<Result<T>> result, Func<Task> handleSuccess, Func<Task> handleFailure),
+      AsyncResultOfHandleNoValueExtensions.HandleToResult(Task<Result<T>> result, Action<T> handleSuccess, Action handleFailure),
+      AsyncResultOfHandleNoValueExtensions.HandleToResult(Task<Result<T>> result, Func<T, Task> handleSuccess, Action handleFailure),
+      AsyncResultOfHandleNoValueExtensions.HandleToResult(Task<Result<T>> result, Action<T> handleSuccess, Func<Task> handleFailure),
+      AsyncResultOfHandleNoValueExtensions.HandleToResult(Task<Result<T>> result, Func<T, Task> handleSuccess, Func<Task> handleFailure),
+      AsyncResultOfHandleNoValueExtensions.HandleResult(Task<Result<T>> result, Func<Result> handleSuccess, Func<Result> handleFailure),
+      AsyncResultOfHandleNoValueExtensions.HandleResult(Task<Result<T>> result, Func<Task<Result>> handleSuccess, Func<Result> handleFailure),
+      AsyncResultOfHandleNoValueExtensions.HandleResult(Task<Result<T>> result, Func<Result> handleSuccess, Func<Task<Result>> handleFailure),
+      AsyncResultOfHandleNoValueExtensions.HandleResult(Task<Result<T>> result, Func<Task<Result>> handleSuccess, Func<Task<Result>> handleFailure),
+      AsyncResultOfHandleNoValueExtensions.HandleResult(Task<Result<T>> result, Func<T, Result> handleSuccess, Func<Result> handleFailure),
+      AsyncResultOfHandleNoValueExtensions.HandleResult(Task<Result<T>> result, Func<T, Task<Result>> handleSuccess, Func<Result> handleFailure),
+      AsyncResultOfHandleNoValueExtensions.HandleResult(Task<Result<T>> result, Func<T, Result> handleSuccess, Func<Task<Result>> handleFailure),
+      AsyncResultOfHandleNoValueExtensions.HandleResult(Task<Result<T>> result, Func<T, Task<Result>> handleSuccess, Func<Task<Result>> handleFailure)
+    ]
+  },
+  {
+    Name: AsyncResultOfHandleWithValueExtensions,
+    Methods: [
+      AsyncResultOfHandleWithValueExtensions.HandleToResult(Task<Result<T>> result, Func<T> bindSuccess, Func<T> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfHandleWithValueExtensions.HandleToResult(Task<Result<T>> result, Func<Task<T>> bindSuccess, Func<T> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfHandleWithValueExtensions.HandleToResult(Task<Result<T>> result, Func<T> bindSuccess, Func<Task<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfHandleWithValueExtensions.HandleToResult(Task<Result<T>> result, Func<Task<T>> bindSuccess, Func<Task<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfHandleWithValueExtensions.HandleResult(Task<Result<T>> result, Func<Result<T>> bindSuccess, Func<Result<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfHandleWithValueExtensions.HandleResult(Task<Result<T>> result, Func<Task<Result<T>>> bindSuccess, Func<Result<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfHandleWithValueExtensions.HandleResult(Task<Result<T>> result, Func<Result<T>> bindSuccess, Func<Task<Result<T>>> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfHandleWithValueExtensions.HandleResult(Task<Result<T>> result, Func<Task<Result<T>>> bindSuccess, Func<Task<Result<T>>> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfHandleWithValueExtensions.HandleToResult(Task<Result<T>> result, Func<T, T> bindSuccess, Func<T> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfHandleWithValueExtensions.HandleToResult(Task<Result<T>> result, Func<T, Task<T>> bindSuccess, Func<T> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfHandleWithValueExtensions.HandleToResult(Task<Result<T>> result, Func<T, T> bindSuccess, Func<Task<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfHandleWithValueExtensions.HandleToResult(Task<Result<T>> result, Func<T, Task<T>> bindSuccess, Func<Task<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfHandleWithValueExtensions.HandleResult(Task<Result<T>> result, Func<T, Result<T>> bindSuccess, Func<Result<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfHandleWithValueExtensions.HandleResult(Task<Result<T>> result, Func<T, Task<Result<T>>> bindSuccess, Func<Result<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfHandleWithValueExtensions.HandleResult(Task<Result<T>> result, Func<T, Result<T>> bindSuccess, Func<Task<Result<T>>> bindFailure, Func<Exception, IError> exceptionHandler),
+      AsyncResultOfHandleWithValueExtensions.HandleResult(Task<Result<T>> result, Func<T, Task<Result<T>>> bindSuccess, Func<Task<Result<T>>> bindFailure, Func<Exception, IError> exceptionHandler)
+    ]
+  },
+  {
+    Name: ObjectExtensions,
+    Methods: [
+      ObjectExtensions.ToResult(TValue value),
+      ObjectExtensions.ToResultNullable(TValue value)
+    ]
+  },
+  {
+    Name: ReasonCollectionExtensions,
+    Methods: [
+      ReasonCollectionExtensions.AggregateReasons(ImmutableArray<IReason> reasons),
+      ReasonCollectionExtensions.AggregateReasons(IEnumerable<IReason> reasons)
+    ]
+  },
+  {
+    Name: ReasonExtensions,
+    Methods: [
+      ReasonExtensions.WithData(T reason, string metadataName, object metadataValue),
+      ReasonExtensions.WithData(T reason, KeyValuePair<string, object> metadata),
+      ReasonExtensions.WithData(T reason, KeyValuePair<string, object>[] metadata),
+      ReasonExtensions.WithData(T reason, Dictionary<string, object> metadata),
+      ReasonExtensions.Trim(T reason)
+    ]
+  },
+  {
+    Name: ResultBindNoValueExtensions,
+    Methods: [
+      ResultBindNoValueExtensions.BindToResult(Result result, Action bind, Func<Exception, IError> exceptionHandler),
+      ResultBindNoValueExtensions.BindToResult(Result result, Func<Task> bind, Func<Exception, IError> exceptionHandler),
+      ResultBindNoValueExtensions.BindResult(Result result, Func<Result> bind, Func<Exception, IError> exceptionHandler),
+      ResultBindNoValueExtensions.BindResult(Result result, Func<Task<Result>> bind, Func<Exception, IError> exceptionHandler)
+    ]
+  },
+  {
+    Name: ResultBindWithValueExtensions,
+    Methods: [
+      ResultBindWithValueExtensions.BindToResult(Result result, Func<T> bind, Func<Exception, IError> exceptionHandler),
+      ResultBindWithValueExtensions.BindToResult(Result result, Func<Task<T>> bind, Func<Exception, IError> exceptionHandler),
+      ResultBindWithValueExtensions.BindResult(Result result, Func<Result<T>> bind, Func<Exception, IError> exceptionHandler),
+      ResultBindWithValueExtensions.BindResult(Result result, Func<Task<Result<T>>> bind, Func<Exception, IError> exceptionHandler)
+    ]
+  },
+  {
+    Name: ResultOfBindNoValueExtensions,
+    Methods: [
+      ResultOfBindNoValueExtensions.BindToResult(Result<T> result, Action<T> bind, Func<Exception, IError> exceptionHandler),
+      ResultOfBindNoValueExtensions.BindToResult(Result<T> result, Func<Task> bind, Func<Exception, IError> exceptionHandler),
+      ResultOfBindNoValueExtensions.BindResult(Result<T> result, Func<T, Result> bind, Func<Exception, IError> exceptionHandler),
+      ResultOfBindNoValueExtensions.BindToResult(Result<T> result, Func<T, Task> bind, Func<Exception, IError> exceptionHandler),
+      ResultOfBindNoValueExtensions.BindToResult(Result<T> result, Action bind, Func<Exception, IError> exceptionHandler),
+      ResultOfBindNoValueExtensions.BindResult(Result<T> result, Func<Task<Result>> bind, Func<Exception, IError> exceptionHandler),
+      ResultOfBindNoValueExtensions.BindResult(Result<T> result, Func<Result> bind, Func<Exception, IError> exceptionHandler),
+      ResultOfBindNoValueExtensions.BindResult(Result<T> result, Func<T, Task<Result>> bind, Func<Exception, IError> exceptionHandler)
+    ]
+  },
+  {
+    Name: ResultOfBindWithValueExtensions,
+    Methods: [
+      ResultOfBindWithValueExtensions.BindToResult(Result<T> result, Func<TNew> bind, Func<Exception, IError> exceptionHandler),
+      ResultOfBindWithValueExtensions.BindToResult(Result<T> result, Func<Task<TNew>> bind, Func<Exception, IError> exceptionHandler),
+      ResultOfBindWithValueExtensions.BindToResult(Result<T> result, Func<T, TNew> bind, Func<Exception, IError> exceptionHandler),
+      ResultOfBindWithValueExtensions.BindToResult(Result<T> result, Func<T, Task<TNew>> bind, Func<Exception, IError> exceptionHandler),
+      ResultOfBindWithValueExtensions.BindResult(Result<T> result, Func<Result<TNew>> bind, Func<Exception, IError> exceptionHandler),
+      ResultOfBindWithValueExtensions.BindResult(Result<T> result, Func<Task<Result<TNew>>> bind, Func<Exception, IError> exceptionHandler),
+      ResultOfBindWithValueExtensions.BindResult(Result<T> result, Func<T, Result<TNew>> bind, Func<Exception, IError> exceptionHandler),
+      ResultOfBindWithValueExtensions.BindResult(Result<T> result, Func<T, Task<Result<TNew>>> bind, Func<Exception, IError> exceptionHandler)
+    ]
+  },
+  {
+    Name: ResultCheckExtensions,
+    Methods: [
+      ResultCheckExtensions.HasError(ResultBase result),
+      ResultCheckExtensions.GetErrors(ResultBase result),
+      ResultCheckExtensions.HasError(ResultBase result, Func<IError, bool> predicate),
+      ResultCheckExtensions.GetErrors(ResultBase result, Func<IError, bool> predicate)
+    ]
+  },
+  {
+    Name: ResultExtensions,
+    Methods: [
+      ResultExtensions.WithReason(TResult result, IReason reason),
+      ResultExtensions.WithReasons(TResult result, IEnumerable<IReason> reasons),
+      ResultExtensions.WithError(TResult result, IError error),
+      ResultExtensions.WithErrors(TResult result, IEnumerable<IError> errors),
+      ResultExtensions.WithSuccess(TResult result, ISuccess success),
+      ResultExtensions.WithSuccesses(TResult result, IEnumerable<ISuccess> successes),
+      ResultExtensions.WithoutValue(Result<T> result)
+    ]
+  },
+  {
+    Name: ResultHandleNoValueExtensions,
+    Methods: [
+      ResultHandleNoValueExtensions.HandleToResult(Result result, Action bindSuccess, Action bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultHandleNoValueExtensions.HandleToResult(Result result, Func<Task> bindSuccess, Action bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultHandleNoValueExtensions.HandleToResult(Result result, Action bindSuccess, Func<Task> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultHandleNoValueExtensions.HandleToResult(Result result, Func<Task> bindSuccess, Func<Task> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultHandleNoValueExtensions.HandleResult(Result result, Func<Result> bindSuccess, Func<Result> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultHandleNoValueExtensions.HandleResult(Result result, Func<Task<Result>> bindSuccess, Func<Result> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultHandleNoValueExtensions.HandleResult(Result result, Func<Result> bindSuccess, Func<Task<Result>> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultHandleNoValueExtensions.HandleResult(Result result, Func<Task<Result>> bindSuccess, Func<Task<Result>> bindFailure, Func<Exception, IError> exceptionHandler)
+    ]
+  },
+  {
+    Name: ResultHandleWithValueExtensions,
+    Methods: [
+      ResultHandleWithValueExtensions.HandleToResult(Result result, Func<T> bindSuccess, Func<T> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultHandleWithValueExtensions.HandleToResult(Result result, Func<Task<T>> bindSuccess, Func<T> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultHandleWithValueExtensions.HandleToResult(Result result, Func<T> bindSuccess, Func<Task<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultHandleWithValueExtensions.HandleToResult(Result result, Func<Task<T>> bindSuccess, Func<Task<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultHandleWithValueExtensions.HandleResult(Result result, Func<Result<T>> bindSuccess, Func<Result<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultHandleWithValueExtensions.HandleResult(Result result, Func<Task<Result<T>>> bindSuccess, Func<Result<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultHandleWithValueExtensions.HandleResult(Result result, Func<Result<T>> bindSuccess, Func<Task<Result<T>>> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultHandleWithValueExtensions.HandleResult(Result result, Func<Task<Result<T>>> bindSuccess, Func<Task<Result<T>>> bindFailure, Func<Exception, IError> exceptionHandler)
+    ]
+  },
+  {
+    Name: ResultOfHandleNoValueExtensions,
+    Methods: [
+      ResultOfHandleNoValueExtensions.HandleToResult(Result<T> result, Action handleSuccess, Action handleFailure),
+      ResultOfHandleNoValueExtensions.HandleToResult(Result<T> result, Func<Task> handleSuccess, Action handleFailure),
+      ResultOfHandleNoValueExtensions.HandleToResult(Result<T> result, Action handleSuccess, Func<Task> handleFailure),
+      ResultOfHandleNoValueExtensions.HandleToResult(Result<T> result, Func<Task> handleSuccess, Func<Task> handleFailure),
+      ResultOfHandleNoValueExtensions.HandleToResult(Result<T> result, Action<T> handleSuccess, Action handleFailure),
+      ResultOfHandleNoValueExtensions.HandleToResult(Result<T> result, Func<T, Task> handleSuccess, Action handleFailure),
+      ResultOfHandleNoValueExtensions.HandleToResult(Result<T> result, Action<T> handleSuccess, Func<Task> handleFailure),
+      ResultOfHandleNoValueExtensions.HandleToResult(Result<T> result, Func<T, Task> handleSuccess, Func<Task> handleFailure),
+      ResultOfHandleNoValueExtensions.HandleResult(Result<T> result, Func<Result> handleSuccess, Func<Result> handleFailure),
+      ResultOfHandleNoValueExtensions.HandleResult(Result<T> result, Func<Task<Result>> handleSuccess, Func<Result> handleFailure),
+      ResultOfHandleNoValueExtensions.HandleResult(Result<T> result, Func<Result> handleSuccess, Func<Task<Result>> handleFailure),
+      ResultOfHandleNoValueExtensions.HandleResult(Result<T> result, Func<Task<Result>> handleSuccess, Func<Task<Result>> handleFailure),
+      ResultOfHandleNoValueExtensions.HandleResult(Result<T> result, Func<T, Result> handleSuccess, Func<Result> handleFailure),
+      ResultOfHandleNoValueExtensions.HandleResult(Result<T> result, Func<T, Task<Result>> handleSuccess, Func<Result> handleFailure),
+      ResultOfHandleNoValueExtensions.HandleResult(Result<T> result, Func<T, Result> handleSuccess, Func<Task<Result>> handleFailure),
+      ResultOfHandleNoValueExtensions.HandleResult(Result<T> result, Func<T, Task<Result>> handleSuccess, Func<Task<Result>> handleFailure)
+    ]
+  },
+  {
+    Name: ResultOfHandleWithValueExtensions,
+    Methods: [
+      ResultOfHandleWithValueExtensions.HandleToResult(Result<T> result, Func<T> bindSuccess, Func<T> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultOfHandleWithValueExtensions.HandleToResult(Result<T> result, Func<Task<T>> bindSuccess, Func<T> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultOfHandleWithValueExtensions.HandleToResult(Result<T> result, Func<T> bindSuccess, Func<Task<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultOfHandleWithValueExtensions.HandleToResult(Result<T> result, Func<Task<T>> bindSuccess, Func<Task<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultOfHandleWithValueExtensions.HandleToResult(Result<T> result, Func<T, T> bindSuccess, Func<T> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultOfHandleWithValueExtensions.HandleToResult(Result<T> result, Func<T, Task<T>> bindSuccess, Func<T> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultOfHandleWithValueExtensions.HandleToResult(Result<T> result, Func<T, T> bindSuccess, Func<Task<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultOfHandleWithValueExtensions.HandleToResult(Result<T> result, Func<T, Task<T>> bindSuccess, Func<Task<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultOfHandleWithValueExtensions.HandleResult(Result<T> result, Func<Result<T>> bindSuccess, Func<Result<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultOfHandleWithValueExtensions.HandleResult(Result<T> result, Func<Task<Result<T>>> bindSuccess, Func<Result<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultOfHandleWithValueExtensions.HandleResult(Result<T> result, Func<Result<T>> bindSuccess, Func<Task<Result<T>>> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultOfHandleWithValueExtensions.HandleResult(Result<T> result, Func<Task<Result<T>>> bindSuccess, Func<Task<Result<T>>> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultOfHandleWithValueExtensions.HandleResult(Result<T> result, Func<T, Result<T>> bindSuccess, Func<Result<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultOfHandleWithValueExtensions.HandleResult(Result<T> result, Func<T, Task<Result<T>>> bindSuccess, Func<Result<T>> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultOfHandleWithValueExtensions.HandleResult(Result<T> result, Func<T, Result<T>> bindSuccess, Func<Task<Result<T>>> bindFailure, Func<Exception, IError> exceptionHandler),
+      ResultOfHandleWithValueExtensions.HandleResult(Result<T> result, Func<T, Task<Result<T>>> bindSuccess, Func<Task<Result<T>>> bindFailure, Func<Exception, IError> exceptionHandler)
+    ]
+  },
+  {
+    Name: DomainExtensions,
+    Methods: [
+      DomainExtensions.MaskReasons(Result result),
+      DomainExtensions.MaskReasons(Result<T> result),
+      DomainExtensions.MaskReasons(IReason reason),
+      DomainExtensions.MaskNonAssemblyReasons(Result result, Assembly[] includeAssemblies),
+      DomainExtensions.MaskNonAssemblyReasons(Result<T> result, Assembly[] includeAssemblies),
+      DomainExtensions.MaskNonAssemblyReasons(IReason reason, Assembly[] includeAssemblies),
+      DomainExtensions.EnforceNotNull(Result<T> result),
+      DomainExtensions.EnforceNotNull(Task<Result<T>> result)
+    ]
+  },
+  {
+    Name: IMaskableReason,
+    Methods: [
+      IMaskableReason.Mask()
+    ]
+  },
+  {
+    Name: AggregateValidationError,
+    Constructors: [
+      AggregateValidationError.ctor(),
+      AggregateValidationError.ctor(IEnumerable<IReason> reasons),
+      AggregateValidationError.ctor(ImmutableArray<IReason> reasons)
+    ],
+    Methods: [
+      AggregateReason.get_Reasons(),
+      AggregateReason.get_Message(),
+      AggregateReason.get_IsError(),
+      ReasonBase.get_Data(),
+      ReasonBase.set_Data(IReadOnlyDictionary<string, object> value)
+    ]
+  },
+  {
+    Name: IValidationError
+  },
+  {
+    Name: ValidationError,
+    Constructors: [
+      ValidationError.ctor(),
+      ValidationError.ctor(string message),
+      ValidationError.ctor(IReason cause),
+      ValidationError.ctor(string message, IReason cause)
+    ],
+    Methods: [
+      Reason.get_Cause(),
+      ReasonBase.get_Message(),
+      ReasonBase.get_Data(),
+      ReasonBase.set_Data(IReadOnlyDictionary<string, object> value)
+    ]
+  },
+  {
+    Name: ValidationErrorBuilder,
+    Constructors: [
+      ValidationErrorBuilder.ctor()
+    ],
+    Methods: [
+      ValidationErrorBuilder.Add(IValidationError error),
+      ValidationErrorBuilder.Add(string message),
+      ValidationErrorBuilder.Evaluate()
+    ]
+  },
+  {
+    Name: BadRequestError,
+    Constructors: [
+      BadRequestError.ctor(),
+      BadRequestError.ctor(string message),
+      BadRequestError.ctor(IError causedBy),
+      BadRequestError.ctor(string message, IError causedBy)
+    ],
+    Methods: [
+      BadRequestError.get_Default(),
+      Reason.get_Cause(),
+      ReasonBase.get_Message(),
+      ReasonBase.get_Data(),
+      ReasonBase.set_Data(IReadOnlyDictionary<string, object> value)
+    ]
+  },
+  {
+    Name: DatabaseError,
+    Constructors: [
+      DatabaseError.ctor(Exception Exception),
+      DatabaseError.ctor(string message)
+    ],
+    Methods: [
+      DatabaseError.get_Default(),
+      DatabaseError.Mask(),
+      ExceptionError.get_Exception(),
+      ExceptionError.get_Message(),
+      ReasonBase.get_Data(),
+      ReasonBase.set_Data(IReadOnlyDictionary<string, object> value)
+    ]
+  },
+  {
+    Name: NetworkError,
+    Constructors: [
+      NetworkError.ctor(Exception Exception),
+      NetworkError.ctor(string message)
+    ],
+    Methods: [
+      NetworkError.get_Default(),
+      NetworkError.Mask(),
+      ExceptionError.get_Exception(),
+      ExceptionError.get_Message(),
+      ReasonBase.get_Data(),
+      ReasonBase.set_Data(IReadOnlyDictionary<string, object> value)
+    ]
+  },
+  {
+    Name: ValueIsNullError,
+    Constructors: [
+      ValueIsNullError.ctor(),
+      ValueIsNullError.ctor(string message),
+      ValueIsNullError.ctor(IError causedBy),
+      ValueIsNullError.ctor(string message, IError causedBy)
+    ],
+    Methods: [
+      ValueIsNullError.get_Default(),
+      ValueIsNullError.Mask(),
+      Reason.get_Cause(),
+      ReasonBase.get_Message(),
+      ReasonBase.get_Data(),
+      ReasonBase.set_Data(IReadOnlyDictionary<string, object> value)
+    ]
+  },
+  {
+    Name: IError
+  },
+  {
+    Name: IReason,
+    Methods: [
+      IReason.get_Message(),
+      IReason.get_Data()
+    ]
+  },
+  {
+    Name: IResult,
+    Methods: [
+      IResult.get_IsFailed(),
+      IResult.get_Reason()
+    ]
+  },
+  {
+    Name: ISuccess
+  }
+]

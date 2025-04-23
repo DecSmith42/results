@@ -1,0 +1,22 @@
+<Project>
+  <PropertyGroup>
+    <Product>Results</Product>
+    <Authors>Declan Smith</Authors>
+
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <PackageDescription>Enables better handling of operations that may succeed or fail with 0 or more reasons</PackageDescription>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+    <LangVersion>13</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);CS1591;NU5104;RCS1001;RCS1003;RCS1123;</NoWarn>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\readme.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+</Project>

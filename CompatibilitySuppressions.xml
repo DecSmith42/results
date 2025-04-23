@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- https://learn.microsoft.com/en-us/dotnet/fundamentals/package-validation/diagnostic-ids -->
+<Suppressions>
+  <Suppression>
+    <DiagnosticId>CP0005</DiagnosticId>
+    <Target>M:DecSm.Results.Implementation.Reasons.Reason.{Clone}$</Target>
+    <Left>lib/netstandard2.0/DecSm.Results.dll</Left>
+    <Right>lib/net8.0/DecSm.Results.dll</Right>
+  </Suppression>
+</Suppressions>

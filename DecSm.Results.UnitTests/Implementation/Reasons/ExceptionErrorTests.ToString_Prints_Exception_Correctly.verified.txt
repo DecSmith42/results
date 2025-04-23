@@ -1,0 +1,11 @@
+﻿{
+  Input: {
+    Exception: {
+      $type: Exception,
+      Type: Exception,
+      Message: Hello
+    },
+    Message: Hello
+  },
+  Result: Exception: 'Hello'
+}

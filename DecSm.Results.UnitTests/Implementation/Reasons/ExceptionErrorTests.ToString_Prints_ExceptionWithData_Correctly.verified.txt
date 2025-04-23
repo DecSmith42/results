@@ -1,0 +1,14 @@
+﻿{
+  Input: {
+    Exception: {
+      $type: Exception,
+      Type: Exception,
+      Message: Hello
+    },
+    Message: Hello,
+    Data: {
+      Key: Value
+    }
+  },
+  Result: Exception: 'Hello', Data=[Key=Value]
+}

@@ -1,0 +1,13 @@
+﻿global using System.Collections.Immutable;
+global using System.Diagnostics.CodeAnalysis;
+global using System.Reflection;
+global using System.Runtime.CompilerServices;
+global using System.Text.Json;
+global using DecSm.Results.Abstraction;
+global using DecSm.Results.Extensions;
+global using DecSm.Results.Implementation.Reasons;
+global using DecSm.Results.Implementation.Results;
+global using DecSm.Results.Serialization;
+global using DiffEngine;
+global using Shouldly;
+global using Assembly = System.Reflection.Assembly;

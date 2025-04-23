@@ -1,0 +1,11 @@
+﻿{
+  Input: {
+    Reasons: null,
+    Message: 0 reasons,
+    IsError: false,
+    Data: {
+      Key: Value
+    }
+  },
+  Result: AggregateReason: '0 reasons', Data=[Key=Value]
+}
