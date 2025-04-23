@@ -2,7 +2,13 @@
 
 [BuildDefinition]
 [GenerateEntryPoint]
-internal partial class Build : DefaultBuildDefinition, IGithubWorkflows, IGitVersion, IPackResults, ITestResults, IPushToNuget
+internal partial class Build : DefaultBuildDefinition,
+    IGithubWorkflows,
+    IGitVersion,
+    IPackResults,
+    ITestResults,
+    IPushToNuget,
+    IPushToRelease
 {
     public override IReadOnlyList<IWorkflowOption> DefaultWorkflowOptions =>
     [
@@ -26,6 +32,7 @@ internal partial class Build : DefaultBuildDefinition, IGithubWorkflows, IGitVer
                 Commands.PackResults,
                 Commands.TestResults,
                 Commands.PushToNuget.WithAddedOptions(WorkflowSecretInjection.Create(Params.NugetApiKey)),
+                Commands.PushToRelease.WithGithubTokenInjection(),
             ],
             WorkflowTypes = [Github.WorkflowType],
         },
