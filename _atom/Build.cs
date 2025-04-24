@@ -36,5 +36,6 @@ internal partial class Build : DefaultBuildDefinition,
             ],
             WorkflowTypes = [Github.WorkflowType],
         },
+        Github.DependabotDefaultWorkflow(),
     ];
 }
