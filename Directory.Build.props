@@ -4,6 +4,7 @@
     <Product>Results</Product>
     <Authors>Declan Smith</Authors>
 
+    <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageDescription>Enables better handling of operations that may succeed or fail with 0 or more reasons</PackageDescription>
     <EnablePackageValidation>true</EnablePackageValidation>
