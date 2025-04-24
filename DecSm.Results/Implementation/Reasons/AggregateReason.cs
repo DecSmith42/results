@@ -31,6 +31,8 @@ public record AggregateReason : ReasonBase
             ? _reasons[0].Message
             : $"{_reasons.Length.ToString()} reasons";
 
+    public bool IsError => _reasons.Any(x => x is IError or AggregateReason { IsError: true });
+
     [Pure]
     public sealed override string ToString()
     {
@@ -56,6 +58,4 @@ public record AggregateReason : ReasonBase
         if (reasons is not null)
             _reasons = reasons.ToImmutableArray();
     }
-
-    public bool IsError => _reasons.Any(x => x is IError or AggregateReason { IsError: true });
 }

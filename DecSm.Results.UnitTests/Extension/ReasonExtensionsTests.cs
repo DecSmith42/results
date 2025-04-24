@@ -2,8 +2,6 @@
 
 internal sealed class ReasonExtensionsTests
 {
-    private record CustomReason : ReasonBase;
-
     [Test]
     public void Trim_EmptyReason_ReturnsUnmodifiedReason()
     {
@@ -92,4 +90,6 @@ internal sealed class ReasonExtensionsTests
                     .Reasons[1]
                     .ShouldBe(error));
     }
+
+    private record CustomReason : ReasonBase;
 }

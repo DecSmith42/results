@@ -2,17 +2,6 @@
 
 internal sealed class ApiSurfaceTests
 {
-    private sealed record ApiDefinition
-    {
-        public required string Name { get; init; }
-
-        public required ConstructorInfo[] Constructors { get; init; }
-
-        public required PropertyInfo[] Properties { get; init; }
-
-        public required MethodInfo[] Methods { get; init; }
-    }
-
     [Test]
     public async Task Api_Surface_Does_Not_Change()
     {
@@ -80,5 +69,16 @@ internal sealed class ApiSurfaceTests
             .Replace("`3", "<T1, T2, T3>")
             .Replace("`4", "<T1, T2, T3, T4>")
             .Replace("`5", "<T1, T2, T3, T4, T5>");
+    }
+
+    private sealed record ApiDefinition
+    {
+        public required string Name { get; init; }
+
+        public required ConstructorInfo[] Constructors { get; init; }
+
+        public required PropertyInfo[] Properties { get; init; }
+
+        public required MethodInfo[] Methods { get; init; }
     }
 }
