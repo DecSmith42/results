@@ -9,5 +9,13 @@ internal partial interface ITestResults : IDotnetTestHelper
         d => d
             .WithDescription("Runs the DecSm.Results.UnitTests tests")
             .ProducesArtifact(ResultsTestProjectName)
-            .Executes(async () => await RunDotnetUnitTests(new(ResultsTestProjectName)));
+            .Executes(async () =>
+            {
+                var exitCode = 0;
+
+                exitCode += await RunDotnetUnitTests(new(ResultsTestProjectName));
+
+                if (exitCode != 0)
+                    throw new StepFailedException("One or more unit tests failed");
+            });
 }
