@@ -2,15 +2,9 @@
 
 [BuildDefinition]
 [GenerateEntryPoint]
-internal partial class Build : DefaultBuildDefinition,
-    IGithubWorkflows,
-    IGitVersion,
-    IPackResults,
-    ITestResults,
-    IPushToNuget,
-    IPushToRelease
+internal partial class Build : DefaultBuildDefinition, IGithubWorkflows, IGitVersion, ITargets
 {
-    public override IReadOnlyList<IWorkflowOption> DefaultWorkflowOptions =>
+    public override IReadOnlyList<IWorkflowOption> GlobalWorkflowOptions =>
     [
         UseGitVersionForBuildId.Enabled, new SetupDotnetStep("9.0.x"),
     ];
@@ -20,7 +14,7 @@ internal partial class Build : DefaultBuildDefinition,
         new("Validate")
         {
             Triggers = [GitPullRequestTrigger.IntoMain, ManualTrigger.Empty],
-            StepDefinitions = [Commands.SetupBuildInfo, Commands.PackResults.WithSuppressedArtifactPublishing, Commands.TestResults],
+            StepDefinitions = [Targets.SetupBuildInfo, Targets.PackResults.WithSuppressedArtifactPublishing, Targets.TestResults],
             WorkflowTypes = [Github.WorkflowType],
         },
         new("Build")
@@ -28,11 +22,11 @@ internal partial class Build : DefaultBuildDefinition,
             Triggers = [GitPushTrigger.ToMain, GithubReleaseTrigger.OnReleased, ManualTrigger.Empty],
             StepDefinitions =
             [
-                Commands.SetupBuildInfo,
-                Commands.PackResults,
-                Commands.TestResults,
-                Commands.PushToNuget.WithAddedOptions(WorkflowSecretInjection.Create(Params.NugetApiKey)),
-                Commands.PushToRelease.WithGithubTokenInjection(),
+                Targets.SetupBuildInfo,
+                Targets.PackResults,
+                Targets.TestResults,
+                Targets.PushToNuget.WithOptions(WorkflowSecretInjection.Create(Params.NugetApiKey)),
+                Targets.PushToRelease.WithGithubTokenInjection(),
             ],
             WorkflowTypes = [Github.WorkflowType],
         },
