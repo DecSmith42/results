@@ -26,7 +26,13 @@ internal partial class Build : DefaultBuildDefinition, IGithubWorkflows, IGitVer
                 Targets.PackResults,
                 Targets.TestResults,
                 Targets.PushToNuget.WithOptions(WorkflowSecretInjection.Create(Params.NugetApiKey)),
-                Targets.PushToRelease.WithGithubTokenInjection(),
+                Targets
+                    .PushToRelease
+                    .WithGithubTokenInjection()
+                    .WithOptions(GithubIf.Create(new ConsumedVariableExpression(nameof(Targets.SetupBuildInfo),
+                            ParamDefinitions[nameof(ISetupBuildInfo.BuildVersion)].ArgName)
+                        .Contains(new StringExpression("-"))
+                        .EqualTo("false"))),
             ],
             WorkflowTypes = [Github.WorkflowType],
         },
