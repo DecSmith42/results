@@ -14,13 +14,13 @@ internal partial class Build : DefaultBuildDefinition, IGithubWorkflows, IGitVer
         new("Validate")
         {
             Triggers = [GitPullRequestTrigger.IntoMain, ManualTrigger.Empty],
-            StepDefinitions = [Targets.SetupBuildInfo, Targets.PackResults.WithSuppressedArtifactPublishing, Targets.TestResults],
+            Targets = [Targets.SetupBuildInfo, Targets.PackResults.WithSuppressedArtifactPublishing, Targets.TestResults],
             WorkflowTypes = [Github.WorkflowType],
         },
         new("Build")
         {
             Triggers = [GitPushTrigger.ToMain, GithubReleaseTrigger.OnReleased, ManualTrigger.Empty],
-            StepDefinitions =
+            Targets =
             [
                 Targets.SetupBuildInfo,
                 Targets.PackResults,
